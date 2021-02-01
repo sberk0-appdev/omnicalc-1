@@ -4,12 +4,30 @@ class ApplicationController < ActionController::Base
     render({ :template => "calculation_templates/square_form.html.erb" })
   end
   def calculate_square_form
-    # params = {"elephant"=>"42"}
+    # params = {"number"=>"42"}
 
-    @num = params.fetch("elephant").to_f
+    @num = params.fetch("number").to_f
 
     @square_of_num = @num ** 2
 
     render({ :template => "calculation_templates/square_results.html.erb" })
+  end
+  def blank_root
+
+    render({ :template => "calculation_templates/root_form.html.erb" })
+  end
+  def calculate_root
+
+    render({ :template => "calculation_templates/root_results.html.erb" })
+  end
+  def blank_random
+    render({ :template => "calculation_templates/rand_form.html.erb" })
+  end
+  def calculate_random
+    @lower = params.fetch("user_min").to_f
+    @upper = params.fetch("user_max").to_f
+    @result = rand(@lower..@upper)
+
+    render({ :template => "calculation_templates/rand_results.html.erb" })
   end
 end
